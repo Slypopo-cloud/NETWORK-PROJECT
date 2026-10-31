@@ -1,0 +1,1 @@
+Supabase migration files belong in this directory. The Phase 1 foundation does not add a database schema.

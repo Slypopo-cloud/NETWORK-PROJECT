@@ -1,0 +1,46 @@
+{
+  "name": "homeguard-wifi-platform",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run build --workspace=@homeguard/shared && concurrently --kill-others --names api,portal,dashboard --prefix-colors cyan,blue,green \"npm run dev --workspace=@homeguard/api\" \"npm run dev --workspace=@homeguard/portal\" \"npm run dev --workspace=@homeguard/dashboard\"",
+    "create:dev-users": "npm run create:dev-users --workspace=@homeguard/api",
+    "enroll:dev-mfa": "npm run enroll:dev-mfa --workspace=@homeguard/api",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "eslint .",
+    "check:env": "node scripts/check-env.mjs",
+    "pretest": "npm run build --workspace=@homeguard/shared",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "vitest run",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "overrides": {
+    "rollup": "npm:@rollup/wasm-node"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@electric-sql/pglite": "^0.5.13",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.3.0",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
+    "@types/supertest": "^6.0.3",
+    "concurrently": "^9.2.1",
+    "eslint": "^10.14.0",
+    "globals": "^16.4.0",
+    "prettier": "^3.6.2",
+    "supertest": "^7.1.4",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.42.0",
+    "vitest": "^5.0.5"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}

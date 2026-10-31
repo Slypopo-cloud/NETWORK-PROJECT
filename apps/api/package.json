@@ -1,0 +1,26 @@
+{
+  "name": "@homeguard/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "create:dev-users": "tsx scripts/create-dev-users.ts",
+    "enroll:dev-mfa": "tsx scripts/enroll-dev-mfa.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/server.js",
+    "pretest": "npm run build --workspace=@homeguard/shared",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@homeguard/shared": "*",
+    "@supabase/supabase-js": "^2.118.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19"
+  }
+}
